@@ -1,0 +1,9 @@
+﻿@page "/route-demo/{id:int}"
+
+<h3>Här är routing dynamic</h3>
+<h4>Användare nummer: @id</h4>
+
+@code {
+    [Parameter]
+    public int id { get; set; }
+}

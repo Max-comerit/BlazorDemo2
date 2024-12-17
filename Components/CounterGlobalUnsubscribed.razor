@@ -1,0 +1,18 @@
+﻿@using BlazorDemo2.Service
+@inject GlobalStateDemo GlobalStateDemo
+
+<h3>Global Räknare</h3>
+<h4>Incremented value: @counterValue</h4>
+<button @onclick="IncrementCount">Increments Globalstate counter</button>
+
+@code {
+    [Parameter]
+    public int IncrementsBy { get; set; } = 1;
+
+    private int counterValue => GlobalStateDemo.Counter;
+
+    private void IncrementCount(){
+        GlobalStateDemo.Increment(15);
+    }
+
+}

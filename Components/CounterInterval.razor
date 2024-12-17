@@ -1,0 +1,21 @@
+﻿<h3>Counter Interval</h3>
+<p>Current Count: @currentCount</p>
+
+<label>
+    Interval:
+    <input type="number" @bind="step" />
+</label>
+
+<button @onclick="IncrementCount">Increment</button>
+
+@code {
+    private int currentCount = 0;
+
+    [Parameter]
+    public int step { get; set; }
+
+    private void IncrementCount()
+    {
+        currentCount += step;
+    }
+}
