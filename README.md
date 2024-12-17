@@ -1,19 +1,19 @@
 
-# **To-Do Applikation i Blazor WebAssembly**
+# **To-Do Applikation-uppgift i Blazor WebAssembly**
 
 ## **Introduktion**  
-Detta projekt är en **To-Do-applikation** byggd med **Blazor WebAssembly Standalone**. Applikationen inkluderar funktioner för att skapa, lista och ta bort uppgifter. Den täcker viktiga koncept i Blazor såsom:  
+Detta projekt ska vara en **To-Do-applikation** byggd med **Blazor WebAssembly Standalone**. Applikationen ska inkludera funktioner fÃ¶r att skapa, lista och ta bort uppgifter. Den bÃ¶r tÃ¤cka viktiga koncept i Blazor sÃ¥som:  
 
 - Komponentbaserad arkitektur  
 - Routing  
 - State Management  
 - Lifecycle-metoder  
-- Formulär med validering  
+- FormulÃ¤r med validering  
 
 ---
 
-## **Mål**  
-Målet är att bygga en applikation som:  
+## **MÃ¥l**  
+MÃ¥let Ã¤r att bygga en applikation som:  
 1. Visar en lista med To-Do-uppgifter.  
-2. Tillåter användaren att lägga till och ta bort uppgifter.  
-3. Validerar inmatade data med hjälp av formulär.  
+2. TillÃ¥ter anvÃ¤ndaren att lÃ¤gga till och ta bort uppgifter.  
+3. Validerar inmatade data med hjÃ¤lp av formulÃ¤r.  
