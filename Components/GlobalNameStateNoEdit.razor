@@ -1,0 +1,21 @@
+﻿@inject GlobalStateNameDemo GlobalName
+
+<h3>Global Name State</h3>
+<p>Hello @currentName</p>
+
+@code {
+    private string newName = string.Empty;
+
+    private string currentName => GlobalName.CurrentName;
+
+    protected override void OnInitialized()
+    {
+        GlobalName.OnChange += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        GlobalName.OnChange -= StateHasChanged;
+    }
+
+}

@@ -1,0 +1,65 @@
+﻿@page "/fetch-data"
+
+<h3>Data från API</h3>
+
+@if (Items == null)
+{
+    <p>Laddar data...</p>
+}
+else
+{
+    <ul>
+        @foreach (var item in Items)
+        {
+            <li>@item</li>
+        }
+    </ul>
+}
+
+<h4>Nuvarande värde i komponent: @localValue</h4>
+<InputNumber @bind-Value="localValue" />
+
+@code {
+    private int localValue;
+    private List<string>? Items;
+
+    [Parameter]
+    public int? EnteredValue { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        localValue = EnteredValue ?? 0;
+        Items = await FetchItemsFromApi();
+        Console.WriteLine("Oninitialized done");
+
+    }
+
+    protected override void OnParametersSet()
+    {
+        if (localValue > 0)
+        {
+            Console.WriteLine($"OnParametersSet triggat! Nya värdet: {localValue}");
+        }
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (!firstRender)
+        {
+            Console.WriteLine("Komponenten har renderats igen.");
+        }
+    }
+
+
+    public void Dispose()
+    {
+        // Rensa upp resurser här
+    }
+
+    private async Task<List<string>> FetchItemsFromApi()
+    {
+        await Task.Delay(5000); // Simulerar fördröjning
+        return new List<string> { "Item 1", "Item 2", "Item 3" };
+    }
+
+}

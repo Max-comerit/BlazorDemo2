@@ -1,27 +1,29 @@
-﻿@using BlazorDemo2.Service
-@inject GlobalStateDemo GlobalStateDemo
+﻿@inject GlobalStateDemo GlobalState
 
 <h3>Global Räknare</h3>
 <h4>Incremented value: @counterValue</h4>
 <button @onclick="IncrementCount">Increments Globalstate counter</button>
 
+
+<LifecycleMethodsComponent Test="100"/>
+
 @code {
     [Parameter]
     public int IncrementsBy { get; set; } = 1;
 
-    private int counterValue => GlobalStateDemo.Counter;
+    private int counterValue => GlobalState.Counter;
 
     protected override void OnInitialized()
     {
-        GlobalStateDemo.OnChange += StateHasChanged;
+        GlobalState.OnChange += StateHasChanged;
     }
 
     private void IncrementCount(){
-        GlobalStateDemo.Increment(15);
+        GlobalState.Increment(15);
     }
 
     public void Dispose()
     {
-        GlobalStateDemo.OnChange -= StateHasChanged;
+        GlobalState.OnChange -= StateHasChanged;
     }
 }

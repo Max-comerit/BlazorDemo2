@@ -1,0 +1,37 @@
+﻿@inject GlobalStateNameDemo GlobalName
+
+<h3>Global Name State</h3>
+<p>Hello @currentName</p>
+
+<label>
+    New name:
+    <input @bind="newName" />
+</label>
+
+<button @onclick="ChangeName">Change Name</button>
+
+@code {
+    private string newName = string.Empty;
+
+    private string currentName => GlobalName.CurrentName;
+
+    protected override void OnInitialized()
+    {
+        GlobalName.OnChange += StateHasChanged;
+    }
+
+    private void ChangeName()
+    {
+        if (!string.IsNullOrWhiteSpace(newName))
+        {
+            GlobalName.ChangeName(newName);
+            newName = string.Empty;
+        }
+    }
+
+    public void Dispose()
+    {
+        GlobalName.OnChange -= StateHasChanged;
+    }
+
+}
