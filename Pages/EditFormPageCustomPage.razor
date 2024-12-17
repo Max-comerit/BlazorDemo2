@@ -35,16 +35,14 @@
 @code {
     private UserModel User = new UserModel();
 
-    public class UserModel
+    public class UserModel : IValidatableObject
     {
-
         [Required(ErrorMessage ="Namn är obligatorisk")]
         public string Name { get; set; }
 
         [EmailAddress(ErrorMessage ="E-postaddressen är ogiltig")]
         public string Email { get; set; }
 
-        [Range(15, 99, ErrorMessage = "Åldern måste vara mellan 15 - 99")]
         public int Age { get; set; }
 
         [Required(ErrorMessage = "Vänligen ange ett lösenord")]
@@ -53,5 +51,36 @@
 
         [Compare("Password", ErrorMessage = "Lösenorden matchar inte")]
         public string ConfirmPassword { get; set; }
+
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            // 1. Kontrollera att Email inte slutar med @example.com
+            if (Email?.EndsWith("@example.com") == true)
+            {
+                yield return new ValidationResult(
+                    "E-post från 'example.com' är inte tillåten.",
+                    new[] { nameof(Email) });
+            }
+
+            // 2. Namnet får inte innehålla siffror
+            if (!string.IsNullOrWhiteSpace(Name) && Name.Any(char.IsDigit))
+            {
+                yield return new ValidationResult(
+                    "Namnet får inte innehålla siffror eller tomma mellanslag.",
+                    new[] { nameof(Name) });
+            }
+
+            // 3. Åldern måste vara mellan 1 och 120 (extra check för säkerhet)
+            if (Age < 1 || Age > 120)
+            {
+                yield return new ValidationResult(
+                    "Åldern måste vara mellan 1 och 120.",
+                    new[] { nameof(Age) });
+            }
+        }
     }
+
+
+
 }
