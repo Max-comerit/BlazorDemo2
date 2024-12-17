@@ -16,4 +16,5 @@ Detta projekt ska vara en **To-Do-applikation** byggd med **Blazor WebAssembly S
 Målet är att bygga en applikation som:  
 1. Visar en lista med To-Do-uppgifter.  
 2. Tillåter användaren att lägga till och ta bort uppgifter.  
-3. Validerar inmatade data med hjälp av formulär.  
+3. Validerar inmatade data med hjälp av formulär.
+4. To-Do-uppgifterna ska persistera över olika sidor och komponenter.
